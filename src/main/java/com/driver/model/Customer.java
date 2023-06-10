@@ -2,8 +2,10 @@ package com.driver.model;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@Table
+//@Table
 @Entity
 public class Customer {
     @Id
@@ -13,13 +15,25 @@ public class Customer {
     private String mobile;
     private String password;
 
-    public Customer(Integer customerId, String mobile, String password) {
-        this.customerId = customerId;
-        this.mobile = mobile;
-        this.password = password;
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+    List<TripBooking> tripBookingList = new ArrayList<>();
+
+//    public Customer(Integer customerId, String mobile, String password) {
+//        this.customerId = customerId;
+//        this.mobile = mobile;
+//        this.password = password;
+//    }
+//
+//    public Customer() {
+//    }
+
+
+    public List<TripBooking> getTripBookingList() {
+        return tripBookingList;
     }
 
-    public Customer() {
+    public void setTripBookingList(List<TripBooking> tripBookingList) {
+        this.tripBookingList = tripBookingList;
     }
 
     public Integer getCustomerId() {

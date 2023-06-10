@@ -4,7 +4,7 @@ package com.driver.model;
 import javax.persistence.*;
 
 
-@Table
+//@Table
 @Entity
 public class Cab {
 
@@ -28,14 +28,14 @@ public class Cab {
         this.driver = driver;
     }
 
-    public Cab() {
-    }
-
-    public Cab(Integer id, int perKmRate, boolean available) {
-        this.id = id;
-        this.perKmRate = perKmRate;
-        this.available = available;
-    }
+//    public Cab() {
+//    }
+//
+//    public Cab(Integer id, int perKmRate, boolean available) {
+//        this.id = id;
+//        this.perKmRate = perKmRate;
+//        this.available = available;
+//    }
 
     public Integer getId() {
         return id;

@@ -3,17 +3,17 @@ package com.driver.model;
 import javax.persistence.*;
 
 
-@Table
+//@Table
 @Entity
 public  class Admin {
-    public Admin(Integer adminId, String username, String password) {
-        this.adminId = adminId;
-        this.username = username;
-        this.password = password;
-    }
-
-    public Admin() {
-    }
+//    public Admin(Integer adminId, String username, String password) {
+//        this.adminId = adminId;
+//        this.username = username;
+//        this.password = password;
+//    }
+//
+//    public Admin() {
+//    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

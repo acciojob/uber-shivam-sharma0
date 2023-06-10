@@ -3,8 +3,10 @@ package com.driver.model;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.ArrayList;
+import java.util.List;
 
-@Table
+//@Table
 @Entity
 public class Driver {
 
@@ -15,18 +17,20 @@ public class Driver {
     private String mobile;
     private String password;
 
-    public Driver() {
-    }
-
-    public Driver(Integer driverId, String mobile, String password) {
-        this.driverId = driverId;
-        this.mobile = mobile;
-        this.password = password;
-    }
+//    public Driver() {
+//    }
+//
+//    public Driver(Integer driverId, String mobile, String password) {
+//        this.driverId = driverId;
+//        this.mobile = mobile;
+//        this.password = password;
+//    }
 
     @OneToOne(mappedBy = "driver",cascade = CascadeType.ALL)
     private Cab cab;
 
+    @OneToMany(mappedBy = "driver",cascade = CascadeType.ALL)
+    List<TripBooking> tripBookingList = new ArrayList<>();
     public Cab getCab() {
         return cab;
     }
@@ -57,5 +61,13 @@ public class Driver {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<TripBooking> getTripBookingList() {
+        return tripBookingList;
+    }
+
+    public void setTripBookingList(List<TripBooking> tripBookingList) {
+        this.tripBookingList = tripBookingList;
     }
 }
