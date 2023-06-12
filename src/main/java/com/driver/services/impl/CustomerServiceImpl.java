@@ -73,6 +73,7 @@ public class CustomerServiceImpl implements CustomerService {
 		customer.setTripBookingList(list);
 		customerRepository2.save(customer);
 
+		tripBookingRepository2.save(bookedTrip);
 		return bookedTrip;
 	}
 
