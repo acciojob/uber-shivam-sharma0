@@ -14,6 +14,9 @@ import com.driver.model.TripStatus;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import static jdk.internal.org.objectweb.asm.tree.Util.add;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -53,14 +56,25 @@ public class CustomerServiceImpl implements CustomerService {
 				driver=driver1;
 			}
 		}
-
+		if (driver==null){
+			throw  new RuntimeException("No cab available!");
+		}
 		TripBooking bookedTrip=new TripBooking();
 		bookedTrip.setDistanceInKm(distanceInKm);
 		bookedTrip.setFromLocation(fromLocation);
 		bookedTrip.setDistanceInKm(distanceInKm);
-		driver.getTripBookingList().add(bookedTrip);
+		List<TripBooking> driverTrips=driver.getTripBookingList();
+		driverTrips.add(bookedTrip);
 		driver.getCab().setAvailable(true);
+		driver.setTripBookingList(driverTrips);
 		driverRepository2.save(driver);
+
+		Customer customer= customerRepository2.findById(customerId).get();
+		List<TripBooking>  list=customer.getTripBookingList();
+		list.add(bookedTrip);
+		customer.setTripBookingList(list);
+		customerRepository2.save(customer);
+
 		return bookedTrip;
 	}
 
