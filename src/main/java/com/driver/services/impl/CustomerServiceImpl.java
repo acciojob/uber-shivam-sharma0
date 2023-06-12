@@ -63,7 +63,7 @@ public class CustomerServiceImpl implements CustomerService {
 		bookedTrip.setDistanceInKm(distanceInKm);
 		List<TripBooking> driverTrips=driver.getTripBookingList();
 		driverTrips.add(bookedTrip);
-		driver.getCab().setAvailable(true);
+		driver.getCab().setAvailable(false);
 		driver.setTripBookingList(driverTrips);
 		driverRepository2.save(driver);
 
